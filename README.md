@@ -2,7 +2,7 @@
 
 ---
 
-![License](https://img.shields.io/badge/license-0BSD-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/reflar/stopforumspam.svg)](https://packagist.org/packages/reflar/stopforumspam)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/reflar/stopforumspam.svg)](https://packagist.org/packages/reflar/stopforumspam)
 
 A [Flarum](http://flarum.org) extension. Stop Forum Spam
 
