@@ -60,7 +60,7 @@ class RegisterMiddleware implements MiddlewareInterface
                             'source' => [
                                 'pointer' => '/data/attributes/username'
                             ],
-                            'detail' => 'Your info has been flagged for spam'
+                            'detail' => 'Your info has been flagged as spam'
                         ]
                     ]);
 
