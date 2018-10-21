@@ -12,9 +12,13 @@
 
 namespace Reflar\Stopforumspam;
 
+use Flarum\Extend\Frontend;
 use Illuminate\Contracts\Events\Dispatcher;
 
-return function (Dispatcher $events) {
-    $events->subscribe(Listeners\AddClientAssets::class);
-    $events->subscribe(Listeners\AddMiddleware::class);
-};
+return[
+    (new Frontend('admin'))
+        ->js(__DIR__.'/js/dist/admin.js'),
+     function (Dispatcher $events) {
+        $events->subscribe(Listeners\AddMiddleware::class);
+    },
+];

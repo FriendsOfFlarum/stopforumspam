@@ -7,7 +7,7 @@
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta-7"
+    "flarum/core": "^0.1.0-beta-8"
   },
   "authors": [
     {
@@ -23,9 +23,9 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "Stop Forum Spam",
+      "title": "ReFlar Stop Forum Spam",
       "icon": {
-        "name": "stop",
+        "name": "fas fa-stop",
         "backgroundColor": "#263238",
         "color": "#ffffff"
       }

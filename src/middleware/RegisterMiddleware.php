@@ -7,16 +7,17 @@ use Flarum\Api\JsonApiResponse;
 use Flarum\Settings\SettingsRepositoryInterface;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Contracts\Validation\ValidationException;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 use Tobscure\JsonApi\Exception\Handler\ResponseBag;
 use Zend\Diactoros\Uri;
-use Zend\Stratigility\MiddlewareInterface;
 
 class RegisterMiddleware implements MiddlewareInterface
 {
-    public function __invoke(Request $request, Response $response, callable $out = null)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $registerUri = new Uri(app()->url('register'));
         if ($request->getUri()->getPath() === $registerUri->getPath()) {
@@ -71,6 +72,6 @@ class RegisterMiddleware implements MiddlewareInterface
             }
         }
 
-        return $out ? $out($request, $response) : $response;
+        return $handler->handle($request);
     }
 }

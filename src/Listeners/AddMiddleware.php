@@ -20,6 +20,6 @@ class AddMiddleware
 
     public function addMiddleware(ConfigureMiddleware $event)
     {
-        $event->pipe->pipe(null, app(RegisterMiddleware::class));
+        $event->pipe(app(RegisterMiddleware::class));
     }
 }
