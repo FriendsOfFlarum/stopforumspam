@@ -19,7 +19,7 @@ class RegisterMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $registerUri = new Uri(app()->url('register'));
+        $registerUri = new Uri(app()->url('/register'));
         if ($request->getUri()->getPath() === $registerUri->getPath()) {
 
             $data = $request->getParsedBody();
