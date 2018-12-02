@@ -20,5 +20,6 @@ return[
         ->js(__DIR__.'/js/dist/admin.js'),
      function (Dispatcher $events) {
         $events->subscribe(Listeners\AddMiddleware::class);
+        $events->subscribe(Listeners\ReportSpammer::class);
     },
 ];

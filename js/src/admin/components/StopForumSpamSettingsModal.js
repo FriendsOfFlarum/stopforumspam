@@ -12,6 +12,10 @@ export default class StopForumSpamSettingsModal extends SettingsModal {
 
 
     form() {
+        let spamBlock = false;
+        if (app.initializers.has('fof-spamblock')) {
+            spamBlock = true;
+        }
         return [
             <div className="Form-group">
                 {Switch.component({
@@ -44,7 +48,21 @@ export default class StopForumSpamSettingsModal extends SettingsModal {
             <div className="Form-group">
                 <label>Threshold</label>
                 <input className="FormControl" bidi={this.setting('sfs.frequency')}/>
+            </div>,
+            <div className="Form-group">
+                {spamBlock === true ? (
+                    <div className="helpText">
+                        <p>Report spammers to StopForumSpam in order to keep the greater forum community spam free</p>
+                        <p>Sign up for StopForumSpam <a href="https://www.stopforumspam.com/forum/register.php">here</a> Then you will need to obtain an Api key <a href="https://www.stopforumspam.com/keys">here.</a></p>
+                    </div>,
+
+                        <div className="Form-group">
+                            <label>Api Key</label>
+                            <input className="FormControl" bidi={this.setting('sfs.api_key')}/>
+                        </div>
+                ) : ''}
             </div>
+
         ];
     }
 }
