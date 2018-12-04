@@ -35,7 +35,10 @@ class ReportSpammer
             $ipAddress = '8.8.8.8';
 
             if ($post) {
-                $ipAddress = $post->id_address;
+                $ip = $post->ip_address;
+                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE)) {
+                    $ipAddress = $ip;
+                }
             }
 
             $client = new Guzzle([
