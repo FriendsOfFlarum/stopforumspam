@@ -49,7 +49,7 @@ class ReportSpammer
                     'api_key' => $apiKey
                 ],
             ]);
-            $client->request('GET', 'http://www.stopforumspam.com/add.php');
+            $client->request('GET', 'https://www.stopforumspam.com/add.php');
         }
     }
 }
