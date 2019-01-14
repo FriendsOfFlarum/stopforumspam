@@ -41,7 +41,7 @@ class RegisterMiddleware implements MiddlewareInterface
                     'username' => $data['username'],
                 ],
             ]);
-            $response = $client->request('GET', 'http://api.stopforumspam.org/api');
+            $response = $client->request('GET', 'https://api.stopforumspam.org/api');
             $body = json_decode($response->getBody());
 
             if ($body->success === 1) {
