@@ -1,6 +1,6 @@
 <?php
 
-namespace FoF\StopForumSpam\middleware;
+namespace FoF\StopForumSpam\Middleware;
 
 use Flarum\Foundation\ErrorHandling\JsonApiFormatter;
 use Flarum\Foundation\ErrorHandling\Registry;
