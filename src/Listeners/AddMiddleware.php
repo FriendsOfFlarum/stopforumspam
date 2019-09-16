@@ -1,10 +1,10 @@
 <?php
 
-namespace Reflar\Stopforumspam\Listeners;
+namespace FoF\StopForumSpam\Listeners;
 
 use Flarum\Event\ConfigureMiddleware;
 use Illuminate\Contracts\Events\Dispatcher;
-use Reflar\Stopforumspam\Middleware\RegisterMiddleware;
+use FoF\StopForumSpam\Middleware\RegisterMiddleware;
 
 class AddMiddleware
 {

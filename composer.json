@@ -1,38 +1,47 @@
 {
-  "name": "reflar/stopforumspam",
+  "name": "fof/stopforumspam",
   "description": "Stop Forum Spam",
   "keywords": [
-    "flarum"
+    "flarum",
+    "friendsofflarum"
   ],
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta-8",
+    "flarum/core": "^0.1.0-beta.10",
     "guzzlehttp/guzzle": "6.*"
+  },
+  "replace": {
+    "reflar/stopforumspam": "*"
   },
   "authors": [
     {
       "name": "Charlie K",
       "email": "charlie.k@redevs.org",
       "role": "Developer"
+    },
+    {
+      "name": "David Sevilla Martin",
+      "email": "me@datitisev.me",
+      "role": "Developer"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Reflar\\Stopforumspam\\": "src/"
+      "FoF\\StopForumSpam\\": "src/"
     }
   },
   "extra": {
     "flarum-extension": {
-      "title": "ReFlar Stop Forum Spam",
+      "title": "FoF Stop Forum Spam",
       "icon": {
         "name": "fas fa-stop",
-        "backgroundColor": "#263238",
-        "color": "#ffffff"
+        "backgroundColor": "#e74c3c",
+        "color": "#fff"
       }
     },
     "flagrow": {
-      "discuss": ""
+      "discuss": "https://discuss.flarum.org/d/17846-friendsofflarum-stopforumspam"
     }
   }
 }

@@ -1,55 +1,51 @@
 <?php
 
-namespace Reflar\Stopforumspam\Listeners;
+namespace FoF\StopForumSpam\Listeners;
 
-use Flarum\Post\Post;
-use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\Foundation\ValidationException;
 use FoF\Spamblock\Event\MarkedUserAsSpammer;
-use GuzzleHttp\Client as Guzzle;
-use Illuminate\Contracts\Events\Dispatcher;
+use GuzzleHttp\Exception\RequestException;
+use FoF\StopForumSpam\StopForumSpam;
 
 class ReportSpammer
 {
-
     /**
-     * Subscribes to the Flarum events.
-     *
-     * @param Dispatcher $events
+     * @var StopForumSpam
      */
-    public function subscribe(Dispatcher $events)
+    private $sfs;
+
+    public function __construct(StopForumSpam $sfs)
     {
-        if (class_exists(MarkedUserAsSpammer::class)) {
-            $events->listen(MarkedUserAsSpammer::class, [$this, 'report']);
-        }
+        $this->sfs = $sfs;
     }
 
-    public function report(MarkedUserAsSpammer $event)
+    public function handle(MarkedUserAsSpammer $event)
     {
-        $apiKey = app(SettingsRepositoryInterface::class)->get('sfs.api_key');
+        if (!$this->sfs->isEnabled()) return;
 
-        if ($apiKey) {
-            $user = $event->user;
+        $user = $event->user;
+        $post = $user->posts()->first();
 
-            $post = Post::where('user_id', $user->id)->first();
+        $ipAddress = '8.8.8.8';
 
-            $ipAddress = '8.8.8.8';
+        if ($post && filter_var($post->ip_address, FILTER_VALIDATE_IP, [FILTER_FLAG_IPV4, FILTER_FLAG_NO_PRIV_RANGE])) {
+            $ipAddress = $post->ip_address;
+        }
 
-            if ($post) {
-                $ip = $post->ip_address;
-                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE)) {
-                    $ipAddress = $ip;
-                }
-            }
-
-            $client = new Guzzle([
-                'query' => [
-                    'ip' => $ipAddress,
-                    'email' => $user->email,
-                    'username' => $user->username,
-                    'api_key' => $apiKey
-                ],
+        try {
+            $this->sfs->report([
+                'ip' => $ipAddress,
+                'username' => $user->username,
+                'email' => $user->email,
             ]);
-            $client->request('GET', 'https://www.stopforumspam.com/add.php');
+        } catch (RequestException $e) {
+            throw new ValidationException([
+                'sfs' => strip_tags(RequestException::getResponseBodySummary($e->getResponse())),
+            ]);
+        } catch (\Throwable $e) {
+            throw new ValidationException([
+                'sfs' => app('translator')->trans('fof-stopforumspam.api.error.unknown'),
+            ]);
         }
     }
 }
