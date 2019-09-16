@@ -1,16 +1,25 @@
 <?php
 
+/*
+ * This file is part of fof/stopforumspam.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\StopForumSpam\Middleware;
 
 use Flarum\Foundation\ErrorHandling\JsonApiFormatter;
 use Flarum\Foundation\ErrorHandling\Registry;
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use FoF\StopForumSpam\StopForumSpam;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use FoF\StopForumSpam\StopForumSpam;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Uri;
 
 class RegisterMiddleware implements MiddlewareInterface
@@ -35,7 +44,6 @@ class RegisterMiddleware implements MiddlewareInterface
     {
         $registerUri = new Uri(app()->url('/register'));
         if ($request->getUri()->getPath() === $registerUri->getPath()) {
-
             $data = $request->getParsedBody();
             $serverParams = $request->getServerParams();
 
@@ -49,12 +57,12 @@ class RegisterMiddleware implements MiddlewareInterface
 
             try {
                 $body = $this->sfs->check([
-                    'ip' => $ipAddress,
-                    'email' => $data['email'],
-                    'username' => $data['username']
+                    'ip'       => $ipAddress,
+                    'email'    => $data['email'],
+                    'username' => $data['username'],
                 ]);
             } catch (\Throwable $e) {
-                return (new JsonApiFormatter)->format(
+                return (new JsonApiFormatter())->format(
                     app(Registry::class)->handle($e),
                     $request
                 );
@@ -71,11 +79,11 @@ class RegisterMiddleware implements MiddlewareInterface
                 }
 
                 if ($frequency !== 0 && $frequency >= (int) $this->settings->get('fof-stopforumspam.frequency')) {
-                    return (new JsonApiFormatter)
+                    return (new JsonApiFormatter())
                         ->format(
                             app(Registry::class)
                                 ->handle(new ValidationException([
-                                    'username' => app('translator')->trans('fof-stopforumspam.forum.message.spam')
+                                    'username' => app('translator')->trans('fof-stopforumspam.forum.message.spam'),
                                 ])),
                             $request
                         );

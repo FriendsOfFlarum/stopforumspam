@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of fof/stopforumspam.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\StopForumSpam\Listeners;
 
 use Flarum\Foundation\ValidationException;
 use FoF\Spamblock\Event\MarkedUserAsSpammer;
-use GuzzleHttp\Exception\RequestException;
 use FoF\StopForumSpam\StopForumSpam;
+use GuzzleHttp\Exception\RequestException;
 
 class ReportSpammer
 {
@@ -21,7 +30,9 @@ class ReportSpammer
 
     public function handle(MarkedUserAsSpammer $event)
     {
-        if (!$this->sfs->isEnabled()) return;
+        if (!$this->sfs->isEnabled()) {
+            return;
+        }
 
         $user = $event->user;
         $post = $user->posts()->first();
@@ -34,9 +45,9 @@ class ReportSpammer
 
         try {
             $this->sfs->report([
-                'ip' => $ipAddress,
+                'ip'       => $ipAddress,
                 'username' => $user->username,
-                'email' => $user->email,
+                'email'    => $user->email,
             ]);
         } catch (RequestException $e) {
             throw new ValidationException([
