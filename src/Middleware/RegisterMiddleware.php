@@ -1,6 +1,6 @@
 <?php
 
-namespace Reflar\Stopforumspam\middleware;
+namespace Reflar\Stopforumspam\Middleware;
 
 use Flarum\Api\Handler\IlluminateValidationExceptionHandler;
 use Flarum\Api\JsonApiResponse;
