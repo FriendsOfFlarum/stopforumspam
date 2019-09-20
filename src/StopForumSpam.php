@@ -47,7 +47,7 @@ class StopForumSpam
     {
         $data['json'] = 1;
 
-        $response = $this->call('https://api.stopforumspam.com/api', $data);
+        $response = $this->call('https://api.stopforumspam.org/api', $data);
 
         return json_decode($response->getBody());
     }
