@@ -2,9 +2,7 @@
   "name": "@fof/stopforumspam",
   "version": "0.0.0",
   "dependencies": {
-    "@fof/components": "github:friendsofflarum/components",
     "flarum-webpack-config": "^0.1.0-beta.9",
-    "prettier": "^1.18.2",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
   },
@@ -12,5 +10,8 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch",
     "lint": "prettier --single-quote --trailing-comma es5 --print-width 150 --tab-width 4 --write src/**/* src/**/**/*"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1"
   }
 }

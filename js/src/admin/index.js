@@ -1,7 +1,9 @@
-import SettingsModal from '@fof/components/admin/settings/SettingsModal';
-import BooleanItem from '@fof/components/admin/settings/items/BooleanItem';
-import NumberItem from '@fof/components/admin/settings/items/NumberItem';
-import StringItem from '@fof/components/admin/settings/items/StringItem';
+import { settings } from '@fof-components';
+
+const {
+    SettingsModal,
+    items: { StringItem, BooleanItem, NumberItem },
+} = settings;
 
 app.initializers.add('fof-stopforumspam', () => {
     app.extensionSettings['fof-stopforumspam'] = () =>
