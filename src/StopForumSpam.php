@@ -29,14 +29,14 @@ class StopForumSpam
         $this->settings = $settings;
     }
 
-    public function isEnabled() : bool
+    public function isEnabled(): bool
     {
         $key = $this->settings->get(self::KEY);
 
         return $key != null && !empty($key);
     }
 
-    public function report(array $data) : ResponseInterface
+    public function report(array $data): ResponseInterface
     {
         $data['api_key'] = $this->settings->get(self::KEY);
 
@@ -52,7 +52,7 @@ class StopForumSpam
         return json_decode($response->getBody());
     }
 
-    private function call(string $url, array $data) : ResponseInterface
+    private function call(string $url, array $data): ResponseInterface
     {
         $client = new Guzzle();
 
