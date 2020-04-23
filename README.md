@@ -23,7 +23,7 @@ composer update fof/stopforumspam
 [<img src="https://opencollective.com/fof/donate/button@2x.png?color=blue" height="25" />](https://opencollective.com/fof/donate)
 
 - [Packagist](https://packagist.org/packages/fof/stopforumspam)
-- [GitHub](https://github.com/packages/FriendsOfFlarum/stopforumspam)
+- [GitHub](https://github.com/FriendsOfFlarum/stopforumspam)
 - [ReFlar's StopForumSpam](https://packagist.org/packages/reflar/stopforumspam)
 
 An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum).
