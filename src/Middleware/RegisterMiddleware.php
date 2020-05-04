@@ -16,11 +16,11 @@ use Flarum\Foundation\ErrorHandling\Registry;
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\StopForumSpam\StopForumSpam;
+use Laminas\Diactoros\Uri;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Uri;
 
 class RegisterMiddleware implements MiddlewareInterface
 {
