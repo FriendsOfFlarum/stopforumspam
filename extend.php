@@ -14,6 +14,7 @@ namespace FoF\StopForumSpam;
 use Flarum\Extend;
 use FoF\Components\Extend\AddFofComponents;
 use FoF\Spamblock\Event\MarkedUserAsSpammer;
+use FoF\StopForumSpam\Middleware\RegisterMiddleware;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return[
@@ -23,7 +24,7 @@ return[
     (new Extend\Locales(__DIR__.'/locale')),
     function (Dispatcher $events) {
         $events->listen(MarkedUserAsSpammer::class, Listeners\ReportSpammer::class);
-
-        $events->subscribe(Listeners\AddMiddleware::class);
     },
+
+    (new Extend\Middleware('forum'))->add(RegisterMiddleware::class),
 ];
