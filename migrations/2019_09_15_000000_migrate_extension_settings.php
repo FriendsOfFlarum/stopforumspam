@@ -29,5 +29,5 @@ return [
     },
     'down' => function (Builder $schema) {
         // Do nothing
-    }
+    },
 ];
