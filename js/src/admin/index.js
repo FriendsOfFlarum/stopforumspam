@@ -1,4 +1,4 @@
-import app from 'flarum/app';
+import app from 'flarum/common/app';
 
 app.initializers.add('fof-stopforumspam', () => {
     let set = app.extensionData.for('fof-stopforumspam');
@@ -23,35 +23,31 @@ app.initializers.add('fof-stopforumspam', () => {
             setting: 'fof-stopforumspam.frequency',
             type: 'number',
         })
-        .registerSetting({
-            label: app.translator.trans('fof-stopforumspam.admin.settings.frequency_text'),
-            setting: 'fof-stopforumspam.hidden_label1',
-            type: 'hidden',
+        .registerSetting(function () {
+            return <p>{app.translator.trans('fof-stopforumspam.admin.settings.frequency_text')}</p>;
         })
-        .registerSetting({
-            label: app.translator.trans('fof-stopforumspam.admin.settings.frequency_example_text'),
-            setting: 'fof-stopforumspam.hidden_label2',
-            type: 'hidden',
+        .registerSetting(function () {
+            return <p>{app.translator.trans('fof-stopforumspam.admin.settings.frequency_example_text')}</p>;
         });
 
     if (app.initializers.has('fof-spamblock')) {
-        set.registerSetting({
-            label: app.translator.trans('fof-stopforumspam.admin.settings.api_key_label'),
-            setting: 'fof-stopforumspam.api_key',
-            type: 'string',
+        set.registerSetting(function () {
+            return <h3>{app.translator.trans('fof-stopforumspam.admin.settings.api_key_text')}</h3>;
         })
-            .registerSetting({
-                label: app.translator.trans('fof-stopforumspam.admin.settings.api_key_text'),
-                setting: 'fof-stopforumspam.hidden_label3',
-                type: 'hidden',
+            .registerSetting(function () {
+                return (
+                    <p>
+                        {app.translator.trans('fof-stopforumspam.admin.settings.api_key_instructions_text', {
+                            register: <a href="https://www.stopforumspam.com/forum/register.php" />,
+                            key: <a href="https://www.stopforumspam.com/keys" />,
+                        })}
+                    </p>
+                );
             })
             .registerSetting({
-                label: app.translator.trans('fof-stopforumspam.admin.settings.api_key_instructions_text', {
-                    register: <a href="https://www.stopforumspam.com/forum/register.php" />,
-                    key: <a href="https://www.stopforumspam.com/keys" />,
-                }),
-                setting: 'fof-stopforumspam.hidden_label4',
-                type: 'hidden',
+                label: app.translator.trans('fof-stopforumspam.admin.settings.api_key_label'),
+                setting: 'fof-stopforumspam.api_key',
+                type: 'string',
             });
     }
 });
