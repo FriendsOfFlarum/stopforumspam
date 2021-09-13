@@ -1,4 +1,4 @@
-import app from 'flarum/common/app';
+import app from 'flarum/admin/app';
 
 app.initializers.add('fof-stopforumspam', () => {
     let set = app.extensionData.for('fof-stopforumspam');
