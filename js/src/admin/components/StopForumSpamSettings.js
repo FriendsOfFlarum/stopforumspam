@@ -37,19 +37,16 @@ export default class StopForumSpamSettings extends ExtensionPage {
                             type: 'boolean',
                             setting: 'fof-stopforumspam.username',
                             label: app.translator.trans('fof-stopforumspam.admin.settings.username_label'),
-                            help: app.translator.trans('fof-stopforumspam.admin.settings.username_help'),
                         })}
                         {this.buildSettingComponent({
                             type: 'boolean',
                             setting: 'fof-stopforumspam.ip',
                             label: app.translator.trans('fof-stopforumspam.admin.settings.ip_label'),
-                            help: app.translator.trans('fof-stopforumspam.admin.settings.ip_help'),
                         })}
                         {this.buildSettingComponent({
                             type: 'boolean',
                             setting: 'fof-stopforumspam.email',
                             label: app.translator.trans('fof-stopforumspam.admin.settings.email_label'),
-                            help: app.translator.trans('fof-stopforumspam.admin.settings.email_help'),
                         })}
                         {this.buildSettingComponent({
                             type: 'boolean',
