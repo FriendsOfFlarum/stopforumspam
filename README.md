@@ -4,7 +4,9 @@
 
 ![Extiverse](https://extiverse.com/extension/fof/stopforumspam/open-graph-image)
 
-A [Flarum](http://flarum.org) extension. Check user registrations against the StopForumSpam database.
+A [Flarum](http://flarum.org) extension.
+
+Checks new user registrations against the `StopForumSpam` database. If either the `confidence` or `frequency` thresholds are reached, the user is prevented from completing their registration on your forum. SSO register via `fof/oauth` and `fof/passport` is also supported. Other SSO providers should work, but are untested. 
 
 ### Installation
 
