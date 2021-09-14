@@ -14,6 +14,7 @@ namespace FoF\StopForumSpam\Listeners;
 use Flarum\Foundation\ValidationException;
 use Flarum\User\Event\RegisteringFromProvider;
 use FoF\StopForumSpam\StopForumSpam;
+use Illuminate\Support\Arr;
 
 class ProviderRegistration
 {
@@ -26,24 +27,26 @@ class ProviderRegistration
 
     public function handle(RegisteringFromProvider $event)
     {
-        dd($event);
-        $serverParams = $_SERVER;
-        if (isset($serverParams['HTTP_CF_CONNECTING_IP'])) {
-            $ipAddress = $serverParams['HTTP_CF_CONNECTING_IP'];
-        } else {
-            $ipAddress = $serverParams['REMOTE_ADDR'];
-        }
-
         $check = $this->sfs->shouldPreventLogin([
-            'ip'       => $ipAddress,
+            'ip'       => $this->getIpAddress(),
             'email'    => $event->user->email,
             'username' => $event->user->username,
-        ]);
+        ], $event->provider, $event->payload);
 
         if ($check) {
             throw new ValidationException([
                 'username' => resolve('translator')->trans('fof-stopforumspam.forum.message.spam'),
             ]);
         }
+    }
+
+    protected function getIpAddress(): ?string
+    {
+        $serverParams = $_SERVER;
+
+        return Arr::get($serverParams, 'HTTP_CLIENT_IP')
+            ?? Arr::get($serverParams, 'HTTP_CF_CONNECTING_IP')
+            ?? Arr::get($serverParams, 'HTTP_X_FORWARDED_FOR')
+            ?? Arr::get($serverParams, 'REMOTE_ADDR');
     }
 }

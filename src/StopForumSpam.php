@@ -56,9 +56,7 @@ class StopForumSpam
 
     private function endpoint(): string
     {
-        return $this->endpoints[
-            empty($choice = $this->settings->get('fof-stopforumspam.regionalEndpoint')) ? 'closest' : $choice
-        ];
+        return $this->endpoints[empty($choice = $this->settings->get('fof-stopforumspam.regionalEndpoint')) ? 'closest' : $choice];
     }
 
     public function isEnabled(): bool
@@ -91,7 +89,7 @@ class StopForumSpam
      *
      * @return bool
      */
-    public function shouldPreventLogin(array $data): bool
+    public function shouldPreventLogin(array $data, ?string $provider = null, ?array $providerData = null): bool
     {
         $data['json'] = 1;
 
@@ -124,7 +122,14 @@ class StopForumSpam
             }
 
             if ($confidence >= $requiredConfidence || $frequency >= $requiredFrequency) {
-                $this->bus->dispatch(new RegistrationBlocked($data['username'], $data['ip'], $data['email'], $data));
+                $this->bus->dispatch(new RegistrationBlocked(
+                    $data['username'],
+                    $data['ip'],
+                    $data['email'],
+                    $data,
+                    $provider,
+                    $providerData
+                ));
 
                 return true;
             }
