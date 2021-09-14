@@ -51,8 +51,8 @@ class RegisterMiddleware implements MiddlewareInterface
 
             try {
                 $shouldPrevent = $this->sfs->shouldPreventLogin([
-                    'ip' => $this->getIpAddress($request),
-                    'email' => $data['email'],
+                    'ip'       => $this->getIpAddress($request),
+                    'email'    => $data['email'],
                     'username' => $data['username'],
                 ]);
             } catch (\Throwable $e) {

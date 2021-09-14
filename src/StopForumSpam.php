@@ -24,8 +24,8 @@ class StopForumSpam
 
     protected $endpoints = [
         'closest' => 'https://api.stopforumspam.org/',
-        'europe' => 'https://europe.stopforumspam.org/',
-        'us' => 'https://us.stopforumspam.org/'
+        'europe'  => 'https://europe.stopforumspam.org/',
+        'us'      => 'https://us.stopforumspam.org/',
     ];
 
     /**
@@ -88,7 +88,8 @@ class StopForumSpam
      * should be prevented or not.
      *
      * @param array $data
-     * @return boolean
+     *
+     * @return bool
      */
     public function shouldPreventLogin(array $data): bool
     {
@@ -107,8 +108,8 @@ class StopForumSpam
         if ($body->success === 1) {
             unset($body->success);
 
-            $requiredFrequency = (int) empty($this->settings->get('fof-stopforumspam.frequency'))? 5 : $this->settings->get('fof-stopforumspam.frequency');
-            $requiredConfidence = (float) empty($this->settings->get('fof-stopforumspam.confidence'))? 50 : $this->settings->get('fof-stopforumspam.confidence');
+            $requiredFrequency = (int) empty($this->settings->get('fof-stopforumspam.frequency')) ? 5 : $this->settings->get('fof-stopforumspam.frequency');
+            $requiredConfidence = (float) empty($this->settings->get('fof-stopforumspam.confidence')) ? 50 : $this->settings->get('fof-stopforumspam.confidence');
             $frequency = 0;
             $confidence = 0.0;
 
@@ -128,7 +129,7 @@ class StopForumSpam
                 return true;
             }
         }
-        
+
         return false;
     }
 }
