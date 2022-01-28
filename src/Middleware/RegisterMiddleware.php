@@ -18,7 +18,6 @@ use Flarum\Http\UrlGenerator;
 use FoF\StopForumSpam\StopForumSpam;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Laminas\Diactoros\Uri;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
