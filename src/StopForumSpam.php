@@ -70,7 +70,7 @@ class StopForumSpam
     {
         $data['api_key'] = $this->settings->get(self::KEY);
 
-        return $this->call('add', $data);
+        return $this->call('https://www.stopforumspam.com/add', $data);
     }
 
     private function call(string $url, array $data): ResponseInterface

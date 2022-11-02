@@ -46,7 +46,7 @@ class ReportSpammer
 
         try {
             $this->sfs->report([
-                'ip'       => $ipAddress,
+                'ip_addr'  => $ipAddress,
                 'username' => $user->username,
                 'email'    => $user->email,
             ]);
