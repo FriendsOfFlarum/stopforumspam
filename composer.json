@@ -53,9 +53,25 @@
         },
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/17846"
+        },
+        "flarum-cli": {
+            "modules": {
+                "githubActions": true
+            }
         }
     },
     "suggest": {
         "fof/spamblock": "Allows the option to report spammers to StopForumSpam in order to keep the greater forum community spam free."
+    },
+    "require-dev": {
+        "flarum/phpstan": "*",
+        "fof/spamblock": "*"
+    },
+    "scripts": {
+        "analyse:phpstan": "phpstan analyse",
+        "clear-cache:phpstan": "phpstan clear-result-cache"
+    },
+    "scripts-descriptions": {
+        "analyse:phpstan": "Run static analysis"
     }
 }

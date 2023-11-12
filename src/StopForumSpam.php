@@ -63,7 +63,7 @@ class StopForumSpam
     {
         $key = $this->settings->get(self::KEY);
 
-        return $key != null && !empty($key);
+        return $key !== null && !empty($key);
     }
 
     public function report(array $data): ResponseInterface
