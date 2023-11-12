@@ -27,7 +27,7 @@ export default class StopForumSpamSettings extends ExtensionPage {
                         external={true}
                       />
                     ),
-                  }
+                  },
                 )}
               </p>
             </div>
@@ -37,16 +37,16 @@ export default class StopForumSpamSettings extends ExtensionPage {
               setting: "fof-stopforumspam.regionalEndpoint",
               options: apiRegions.reduce((o, p) => {
                 o[p] = app.translator.trans(
-                  `fof-stopforumspam.admin.settings.region_${p}_label`
+                  `fof-stopforumspam.admin.settings.region_${p}_label`,
                 );
 
                 return o;
               }, {}),
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.regional_endpoint_label"
+                "fof-stopforumspam.admin.settings.regional_endpoint_label",
               ),
               help: app.translator.trans(
-                "fof-stopforumspam.admin.settings.regional_endpoint_help"
+                "fof-stopforumspam.admin.settings.regional_endpoint_help",
               ),
               default: "closest",
             })}
@@ -54,41 +54,41 @@ export default class StopForumSpamSettings extends ExtensionPage {
               type: "boolean",
               setting: "fof-stopforumspam.username",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.username_label"
+                "fof-stopforumspam.admin.settings.username_label",
               ),
             })}
             {this.buildSettingComponent({
               type: "boolean",
               setting: "fof-stopforumspam.ip",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.ip_label"
+                "fof-stopforumspam.admin.settings.ip_label",
               ),
             })}
             {this.buildSettingComponent({
               type: "boolean",
               setting: "fof-stopforumspam.email",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.email_label"
+                "fof-stopforumspam.admin.settings.email_label",
               ),
             })}
             {this.buildSettingComponent({
               type: "boolean",
               setting: "fof-stopforumspam.emailhash",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.email_hash_label"
+                "fof-stopforumspam.admin.settings.email_hash_label",
               ),
               help: app.translator.trans(
-                "fof-stopforumspam.admin.settings.email_hash_help"
+                "fof-stopforumspam.admin.settings.email_hash_help",
               ),
             })}
             {this.buildSettingComponent({
               type: "number",
               setting: "fof-stopforumspam.frequency",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.frequency_label"
+                "fof-stopforumspam.admin.settings.frequency_label",
               ),
               help: app.translator.trans(
-                "fof-stopforumspam.admin.settings.frequency_help"
+                "fof-stopforumspam.admin.settings.frequency_help",
               ),
               placeholder: "5",
               required: true,
@@ -97,10 +97,10 @@ export default class StopForumSpamSettings extends ExtensionPage {
               type: "number",
               setting: "fof-stopforumspam.confidence",
               label: app.translator.trans(
-                "fof-stopforumspam.admin.settings.confidence_label"
+                "fof-stopforumspam.admin.settings.confidence_label",
               ),
               help: app.translator.trans(
-                "fof-stopforumspam.admin.settings.confidence_help"
+                "fof-stopforumspam.admin.settings.confidence_help",
               ),
               min: 0,
               max: 100,
@@ -112,14 +112,14 @@ export default class StopForumSpamSettings extends ExtensionPage {
                   <hr />,
                   <p className="helpText">
                     {app.translator.trans(
-                      "fof-stopforumspam.admin.settings.api_key_text"
+                      "fof-stopforumspam.admin.settings.api_key_text",
                     )}
                   </p>,
                   this.buildSettingComponent({
                     type: "string",
                     setting: "fof-stopforumspam.api_key",
                     label: app.translator.trans(
-                      "fof-stopforumspam.admin.settings.api_key_label"
+                      "fof-stopforumspam.admin.settings.api_key_label",
                     ),
                     help: app.translator.trans(
                       "fof-stopforumspam.admin.settings.api_key_instructions_text",
@@ -128,7 +128,7 @@ export default class StopForumSpamSettings extends ExtensionPage {
                           <a href="https://www.stopforumspam.com/forum/register.php" />
                         ),
                         key: <a href="https://www.stopforumspam.com/keys" />,
-                      }
+                      },
                     ),
                   }),
                 ]
